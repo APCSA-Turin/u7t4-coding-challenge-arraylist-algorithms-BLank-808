@@ -316,7 +316,59 @@ public class Main{
    *  @param numList  numList of ints
    */
     public static ArrayList<Integer> modes(int[] numList){
+        ArrayList<Integer> nums= new ArrayList<>();
+        for (int i : numList) {
+            if(!nums.contains(i)){
+                nums.add(i);
+            }
+        }
+        int[] Count= new int[nums.size()];
+        
+        for (int index =0; index< numList.length; index++) {
+            for (int g = 0; g < Count.length; g++) {
+                if(nums.get(g)== numList[index]){
+                    Count[g]++;
+                    break;
+                }
+            }
+        }
+        int max = Count[0];
+        System.out.println(max);
+        for (int c=0; c< Count.length; c++) {
+            if(Count[c]<max && Count[c] !=-1 ){
+                nums.set(c, 0);
+                Count[c]=-1;
+                System.out.println(nums);
+                c=0;    
+            }else if (Count[c]!=-1){
+            max=Count[c];
+            }
+        }
 
-        return new ArrayList<Integer>();
+        for (int c=0; c< Count.length; c++) {
+            if(Count[c]<max && Count[c] !=-1 ){
+                nums.set(c, 0);
+                Count[c]=-1;
+            }
+        }
+
+        
+        for (int a=0; a< nums.size(); a++) {
+            if(!nums.contains(0)){
+                return new ArrayList<Integer>();
+            }
+            if(nums.get(a)==0){
+                nums.remove(a);
+                a--;
+            }
+        }
+
+        return nums;
+    }
+
+    public static void main(String[] args) {
+        int[] intList22 = {1, 2, 3, 4, 5, 6};
+        ArrayList<Integer> modes = Main.modes(intList22);
+        System.out.println(modes);
     }
 }
