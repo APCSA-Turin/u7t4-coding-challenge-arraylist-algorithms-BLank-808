@@ -124,12 +124,14 @@ public class Main{
    */
     public static ArrayList<String> moveBWords(ArrayList<String> wordList){
         int size = wordList.size();
+        int count=0;
         String str;
-        for(int i = size-1; i>=0; i--){
+        for(int i = size-1; i>=count; i--){
             str=wordList.get(i);
             if(str.substring(0,1).equals("b") || str.substring(0,1).equals("B")) {
             wordList.remove(i);
             i++;
+            count++;
             wordList.add(0,str);
             }
         }
